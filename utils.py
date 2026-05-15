@@ -2,6 +2,10 @@ from __future__ import annotations
 
 from typing import Dict, Optional
 
+TRUE_INPUTS = {"s", "si", "y", "yes", "true", "1"}
+FALSE_INPUTS = {"n", "no", "false", "0"}
+UNKNOWN_INPUTS = {"d", "desconocido", "", "?"}
+
 
 def bool_to_spanish(value: bool) -> str:
     return "si" if value else "no"
@@ -9,13 +13,18 @@ def bool_to_spanish(value: bool) -> str:
 
 def parse_yes_no_unknown(text: str) -> Optional[bool]:
     normalized = text.strip().lower()
-    if normalized in {"s", "si", "y", "yes", "true", "1"}:
+    if normalized in TRUE_INPUTS:
         return True
-    if normalized in {"n", "no", "false", "0"}:
+    if normalized in FALSE_INPUTS:
         return False
-    if normalized in {"d", "desconocido", "", "?"}:
+    if normalized in UNKNOWN_INPUTS:
         return None
     return None
+
+
+def is_valid_yes_no_unknown_input(text: str) -> bool:
+    normalized = text.strip().lower()
+    return normalized in TRUE_INPUTS | FALSE_INPUTS | UNKNOWN_INPUTS
 
 
 def format_probability(value: float) -> str:

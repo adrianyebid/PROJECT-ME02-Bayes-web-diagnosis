@@ -2,6 +2,15 @@
 
 ## Sistema bayesiano para el diagnóstico probabilístico de fallas en una aplicación web distribuida
 
+## Estado de documentacion
+
+Documentos listos para uso y exposicion:
+
+* `documentation/manual_usuario.md`
+* `documentation/manual_tecnico.md`
+* `documentation/presentacion_exposicion.md`
+* `documentation/validacion_final.md`
+
 Este proyecto consiste en el desarrollo de una aplicación de software que permite estimar probabilísticamente la causa más probable de una falla en una aplicación web distribuida, utilizando redes bayesianas e inferencia probabilística.
 
 El proyecto se basa en el Capítulo 13: Probabilistic Reasoning del libro Artificial Intelligence: A Modern Approach, de Stuart Russell y Peter Norvig. En este capítulo se estudia cómo representar conocimiento incierto mediante redes bayesianas, tablas de probabilidad condicional e inferencia probabilística.
@@ -315,7 +324,9 @@ bayes-web-diagnosis/
 ├── diseno_aplicacion.md
 ├── manual_usuario.md
 ├── manual_tecnico.md
-└── escenarios_prueba.md
+├── escenarios_prueba.md
+├── presentacion_exposicion.md
+└── validacion_final.md
 
 ---
 

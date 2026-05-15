@@ -1,9 +1,15 @@
 from __future__ import annotations
 
+from typing import Optional
+
 from inference import enumeration_ask
 from model import create_web_diagnosis_network
 from scenarios import run_all_scenarios
-from utils import parse_yes_no_unknown, print_distribution
+from utils import (
+    is_valid_yes_no_unknown_input,
+    parse_yes_no_unknown,
+    print_distribution,
+)
 
 
 def print_header() -> None:
@@ -13,25 +19,45 @@ def print_header() -> None:
     print("=" * 45)
 
 
+def select_query_variable(variables) -> Optional[str]:
+    while True:
+        selected = input(
+            "\nNumero de variable de consulta (0 para volver): "
+        ).strip()
+
+        if selected == "0":
+            return None
+
+        if selected.isdigit() and 1 <= int(selected) <= len(variables):
+            return variables[int(selected) - 1]
+
+        print("Seleccion invalida. Debes ingresar un numero de la lista.")
+
+
+def read_evidence_value(variable: str) -> Optional[bool]:
+    while True:
+        raw = input(f"{variable} [s/n/d]: ")
+        if is_valid_yes_no_unknown_input(raw):
+            return parse_yes_no_unknown(raw)
+        print("Entrada invalida. Usa: s (si), n (no) o d (desconocido).")
+
+
 def manual_query(network) -> None:
     variables = network.get_variables()
     print("\nVariables disponibles:")
     for index, name in enumerate(variables, start=1):
         print(f"{index}. {name}")
 
-    selected = input("\nNumero de variable de consulta: ").strip()
-    if not selected.isdigit() or not (1 <= int(selected) <= len(variables)):
-        print("Seleccion invalida.")
+    query = select_query_variable(variables)
+    if query is None:
         return
 
-    query = variables[int(selected) - 1]
     evidence = {}
-    print("\nIngresa evidencia (s = si, n = no, d = desconocido)")
+    print("\nIngresa evidencia (s = si, n = no, d = desconocido).")
     for variable in variables:
         if variable == query:
             continue
-        raw = input(f"{variable}: ")
-        value = parse_yes_no_unknown(raw)
+        value = read_evidence_value(variable)
         if value is None:
             continue
         evidence[variable] = value
