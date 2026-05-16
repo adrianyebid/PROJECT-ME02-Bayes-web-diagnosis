@@ -87,7 +87,7 @@ Implementa la consulta posterior:
 
 Flujo:
 
-1. Verifica que `query` no este incluida en evidencia.
+1. Valida que la consulta y la evidencia sean coherentes con la red.
 2. Construye distribucion no normalizada para `query=True` y `query=False`.
 3. Para cada caso llama `enumerate_all(...)`.
 4. Aplica `normalize(...)`.
@@ -111,6 +111,17 @@ Convierte valores no normalizados a distribucion valida:
 `P_i = value_i / sum(values)`
 
 Si la suma es `0.0`, lanza `ValueError` para evitar division invalida.
+
+### 5.4 Validaciones implementadas en esta fase (Integrante 5)
+
+Se agregaron validaciones defensivas para evitar consultas inconsistentes:
+
+- `query` debe existir en la red.
+- `query` no puede venir tambien en `evidence`.
+- Cada variable de evidencia debe existir en la red.
+- Cada valor de evidencia debe ser estrictamente booleano (`True`/`False`).
+
+Estas validaciones se aplican antes de iniciar la enumeracion y generan `ValueError` con mensajes explicitos.
 
 ---
 
@@ -198,19 +209,27 @@ El algoritmo por enumeracion exacta recorre combinaciones de variables ocultas.
 Comandos ejecutados:
 
 ```bash
-python3 -m py_compile main.py node.py bayesian_network.py inference.py model.py scenarios.py utils.py
-python3 main.py
+python -m py_compile main.py node.py bayesian_network.py inference.py model.py scenarios.py utils.py
+python main.py
 ```
 
 Estado:
 
 - Compilacion: exitosa
-- Ejecucion: exitosa
-- Escenarios: ejecutan sin errores
-- Manejo de entradas invalidas: validado
+- Inferencia por escenarios: ejecuta sin errores
+- En cada escenario se cumple `P(True) + P(False) = 1.0`
+- Validaciones de error de consulta/evidencia: validadas
+
+Resultados de referencia en escenarios:
+
+- `P(BaseDatosCaida=si | Error500=si, LatenciaAlta=si, LoginFallido=no) = 0.2824`
+- `P(BackendSaturado=si | Error500=si, ServicioNoDisponible=si, LatenciaAlta=si) = 0.5801`
+- `P(ErrorAutenticacion=si | LoginFallido=si, Error500=no, LatenciaAlta=no) = 0.4945`
+- `P(ConexionInestable=si | LatenciaAlta=si, Error500=no, ServicioNoDisponible=no) = 0.4573`
+- `P(GatewayCaido=si | ServicioNoDisponible=si, LatenciaAlta=si, Error500=no) = 0.7320`
 
 Comentario:
-Con estas pruebas dejamos una base estable para integrar despues los ajustes finales de los demas integrantes.
+Con estas pruebas, el motor de inferencia por enumeracion queda estable y listo para ser ajustado por el equipo en fases posteriores (ajuste de CPT, analisis y reporte).
 
 ---
 
