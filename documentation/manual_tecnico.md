@@ -23,37 +23,41 @@ Separamos logica probabilistica, modelo y consola para que cada parte del grupo 
 
 ---
 
-## 3. Modelo de datos
+## 3. Modelo de datos y Estructuras Base
 
-### 3.1 Clase `Node`
+El corazón de la representación de conocimiento incial recae sobre dos clases fundamentales: `Node` y `BayesianNetwork`. Estas clases constituyen la infraestructura técnica sobre la cual actúa posteriormente el motor de inferencia.
 
-Responsabilidades:
+### 3.1 Clase `Node` (`node.py`)
 
-- Guardar nombre, padres y CPT.
-- Validar consistencia de CPT al instanciar (`validate_cpt`).
-- Retornar probabilidad local `P(X=value | padres)`.
+**Propósito:** Representa de forma individual cada variable aleatoria booleana (nodos de la red) junto con su dependencia condicional respecto a otras variables. 
 
-Estructura de CPT:
+**Atributos Internos:**
+- `name (str)`: El identificador único del nodo (ej. `"Error500"`).
+- `parents (List[str])`: Una lista que contiene los nombres de sus nodos padres. Si la lista está vacía `[]`, el nodo actúa como una variable causal.
+- `cpt (Dict[Tuple[bool, ...], float])`: La Tabla de Probabilidad Condicional (CPT). Se implementó usando un diccionario donde la llave es una tupla booleana representando los valores de los padres (en el mismo orden en que fueron declarados en `parents`), y el valor es un flotante que indica la probabilidad de que el nodo actual sea `True`.
 
-- Llave: tupla booleana con valores de padres en el orden definido.
-- Valor: `P(Node=True | padres)`.
+**Reglas de validación internas (`validate_cpt`):**
+El nodo se autovalida inmediatamente después de su inicialización (`__post_init__` del `dataclass`), garantizando:
+- Que el tamaño de la tabla sea exactamente `2^n` filas, siendo `n` la cantidad de padres.
+- Que la longitud de cada llave coincida con el número de padres.
+- Que toda probabilidad asignada se encuentre acotada matemática y lógicamente en el dominio `[0.0, 1.0]`.
 
-Reglas de validacion:
+**Método clave: `get_probability(value, evidence)`**
+Este método consulta la CPT local. Filtra de la evidencia global únicamente los valores de sus propios padres, construye la tupla de búsqueda y extrae `P(Node=True)`. Si se le solicita `value=False`, calcula silenciosamente el complemento `1.0 - P_true`.
 
-- Numero de filas debe ser `2^n`, donde `n` es cantidad de padres.
-- Longitud de cada llave debe coincidir con `n`.
-- Cada probabilidad debe estar en `[0, 1]`.
+### 3.2 Clase `BayesianNetwork` (`bayesian_network.py`)
 
-### 3.2 Clase `BayesianNetwork`
+**Propósito:** Actúa como el Gestor y Contenedor del Grafo Acíclico Dirigido (DAG). Mantiene la coherencia posicional y estructural de los `Node`.
 
-Responsabilidades:
+**Estructura Interna de Almacenamiento:**
+- `nodes (Dict[str, Node])`: Diccionario tipo *hash map* para acceder en tiempo constante a cualquier objeto `Node` a partir de su nombre.
+- `order (List[str])`: Lista que documenta el orden exacto de inserción de los nodos.
 
-- Registrar nodos (`add_node`).
-- Mantener orden de evaluacion (`order`).
-- Validar que todos los padres existan (`validate_network`).
-- Delegar probabilidad local a cada nodo (`probability`).
+**Mantenimiento del Orden Topológico:**
+Internamente la lógica de nuestra red bayesiana no realiza un "ordenamiento topológico dinámico". En su lugar, el diseño **obliga a que el registro** de los nodos a través del método `add_node(self, node)` se haga desde las "Raíces hasta las Hojas" (causas puras primero, síntomas después). Al añadir el nombre del nodo a `self.order` al momento del registro, el arreglo `order` preserva de manera pasiva el orden topológico. Este concepto es vital porque el algoritmo de inferencia por enumeración requiere que cuando analice un nodo hijo, sus variables condicionantes (padres) ya hayan sido trazadas.
 
-Nota: el algoritmo de enumeracion asume que `order` respeta causalidad (padres antes que hijos).
+**Validación Estructural (`validate_network`):**
+La clase network también asume el rol de integridad del DAG comprobando que cada padre de cada nodo declarado dentro del ecosistema exista formalmente en el diccionario `nodes`. Sin esta revisión preventiva, podrían ocurrir quiebres lógicos de llave faltante en tiempo de inferencia probabilística.
 
 ---
 

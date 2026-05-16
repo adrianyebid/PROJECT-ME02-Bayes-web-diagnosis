@@ -6,6 +6,18 @@ from typing import Dict, List, Tuple
 
 @dataclass
 class Node:
+    """
+    Representa una variable aleatoria booleana en una red bayesiana.
+    
+    Attributes:
+        name (str): Identificador único de la variable en la red.
+        parents (List[str]): Lista de nombres de los nodos padres. 
+                             Si la lista está vacía, el nodo es una variable independiente (causa).
+        cpt (Dict[Tuple[bool, ...], float]): Tabla de probabilidad condicional (Conditional Probability Table).
+            Mapea una tupla con los valores booleanos de los padres a la probabilidad de que este nodo sea True.
+            Ejemplo sin padres: {(): 0.05} -> P(Var=True) = 0.05
+            Ejemplo con 2 padres: {(True, False): 0.85} -> P(Var=True | Padre1=True, Padre2=False) = 0.85
+    """
     name: str
     parents: List[str] = field(default_factory=list)
     cpt: Dict[Tuple[bool, ...], float] = field(default_factory=dict)

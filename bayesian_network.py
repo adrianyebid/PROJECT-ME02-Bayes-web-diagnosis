@@ -6,6 +6,18 @@ from node import Node
 
 
 class BayesianNetwork:
+    """
+    Almacena, gestiona y valida la estructura de una red bayesiana.
+
+    Esta clase mantiene el conjunto de nodos y asegura que se respete el orden
+    topológico de las variables, el cual es fundamental para el algoritmo de inferencia.
+    
+    Attributes:
+        nodes (Dict[str, Node]): Diccionario que asocia el nombre de la variable con su objeto Node correspondiente.
+        order (List[str]): Lista que mantiene los nombres de los nodos en el orden en que fueron insertados.
+                           Sirve como el orden topológico requerido, asumiendo que los nodos se insertan
+                           desde las causas hacia los síntomas (los padres antes que los hijos).
+    """
     def __init__(self) -> None:
         self.nodes: Dict[str, Node] = {}
         self.order: List[str] = []
@@ -37,6 +49,10 @@ class BayesianNetwork:
                 if parent not in self.nodes:
                     raise ValueError(
                         f"El nodo '{name}' tiene un padre inexistente: '{parent}'."
+                    )
+                if self.order.index(parent) >= self.order.index(name):
+                    raise ValueError(
+                        f"El nodo '{name}' esta antes que su padre '{parent}' en el orden topologico."
                     )
 
     def show_structure(self) -> None:
