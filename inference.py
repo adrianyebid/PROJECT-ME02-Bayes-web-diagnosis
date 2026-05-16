@@ -8,8 +8,7 @@ from bayesian_network import BayesianNetwork
 def enumeration_ask(
     query: str, evidence: Dict[str, bool], network: BayesianNetwork
 ) -> Dict[bool, float]:
-    if query in evidence:
-        raise ValueError("La variable de consulta no debe estar incluida en la evidencia.")
+    _validate_query_and_evidence(query, evidence, network)
 
     distribution: Dict[bool, float] = {}
     for value in (True, False):
@@ -46,3 +45,23 @@ def normalize(distribution: Dict[bool, float]) -> Dict[bool, float]:
     if total == 0.0:
         raise ValueError("No se puede normalizar una distribucion con suma 0.")
     return {key: value / total for key, value in distribution.items()}
+
+
+def _validate_query_and_evidence(
+    query: str, evidence: Dict[str, bool], network: BayesianNetwork
+) -> None:
+    valid_variables = set(network.get_variables())
+
+    if query not in valid_variables:
+        raise ValueError(f"Variable de consulta invalida: '{query}'.")
+
+    if query in evidence:
+        raise ValueError("La variable de consulta no debe estar incluida en la evidencia.")
+
+    for variable, value in evidence.items():
+        if variable not in valid_variables:
+            raise ValueError(f"Variable de evidencia invalida: '{variable}'.")
+        if not isinstance(value, bool):
+            raise ValueError(
+                f"La evidencia para '{variable}' debe ser booleana (True/False)."
+            )
