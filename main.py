@@ -4,11 +4,15 @@ from typing import Optional
 
 from inference import enumeration_ask
 from model import create_web_diagnosis_network
-from scenarios import run_all_scenarios
+from scenarios import run_all_scenarios, run_all_scenarios_with_timing, run_full_analysis
 from utils import (
     is_valid_yes_no_unknown_input,
     parse_yes_no_unknown,
     print_distribution,
+)
+from visualization import (
+    generate_all_ascii_diagrams,
+    generate_all_charts,
 )
 
 
@@ -66,6 +70,32 @@ def manual_query(network) -> None:
     print_distribution(query, distribution)
 
 
+def run_full_analysis_menu(network) -> None:
+    print("\nEjecutando analisis completo (escenarios + sensibilidad)...")
+    results = run_full_analysis(network)
+
+    print("\nGenerando graficos...")
+    prior_values = {}
+    for scenario in results["escenarios_base"]:
+        q = scenario["query"]
+        if q not in prior_values:
+            dist = enumeration_ask(q, {}, network)
+            prior_values[q] = dist[True]
+
+    generate_all_charts(
+        results["escenarios_base"],
+        results["analisis_sensibilidad"],
+        prior_values,
+    )
+
+    print("\nGenerando diagramas de flujo...")
+    generate_all_ascii_diagrams()
+
+
+def run_diagrams_menu(network) -> None:
+    generate_all_ascii_diagrams()
+
+
 def run_menu() -> None:
     network = create_web_diagnosis_network()
     while True:
@@ -73,7 +103,10 @@ def run_menu() -> None:
         print("1. Ejecutar consulta manual")
         print("2. Ejecutar escenarios de prueba")
         print("3. Mostrar estructura de la red")
-        print("4. Salir")
+        print("4. Ejecutar escenarios con medicion de tiempo")
+        print("5. Analisis completo (sensibilidad + graficos)")
+        print("6. Mostrar diagramas de flujo (ASCII)")
+        print("7. Salir")
         option = input("\nSeleccione una opcion: ").strip()
 
         if option == "1":
@@ -83,6 +116,12 @@ def run_menu() -> None:
         elif option == "3":
             network.show_structure()
         elif option == "4":
+            run_all_scenarios_with_timing(network)
+        elif option == "5":
+            run_full_analysis_menu(network)
+        elif option == "6":
+            run_diagrams_menu(network)
+        elif option == "7":
             print("Saliendo...")
             break
         else:
