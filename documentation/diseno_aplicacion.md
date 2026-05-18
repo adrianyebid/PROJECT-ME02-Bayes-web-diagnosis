@@ -16,36 +16,7 @@ El sistema está dividido en cinco módulos lógicos principales diseñados para
 
 Para el modelado de la red bayesiana se usan principalmente dos clases `Node` y `BayesianNetwork`. 
 
-```mermaid
-classDiagram
-    class Node {
-        +str name
-        +list[str] parents
-        +dict cpt
-        +__init__(name: str, parents: list, cpt: dict)
-        +probability(value: bool, evidence: dict) float
-    }
-
-    class BayesianNetwork {
-        +dict nodes
-        +list variables
-        +__init__()
-        +add_node(node: Node)
-        +get_node(name: str) Node
-        +validate_topological_sort()
-    }
-
-    class Inference {
-        <<module>>
-        +enumeration_ask(X: str, e: dict, bn: BayesianNetwork) dict
-        +enumerate_all(vars: list, e: dict) float
-        +normalize(Q: dict) dict
-    }
-
-    BayesianNetwork "1" *-- "*" Node : contiene
-    Inference ..> BayesianNetwork : consulta
-    Inference ..> Node : calcula prob.
-```
+![Diagrama de clases - Red Bayesiana](../images/red-bayes.png)
 
 ### Explicación de Atributos Críticos
 *   **`Node.cpt` (Conditional Probability Table)**: Se implementará utilizando diccionarios en Python donde las llaves (`keys`) serán tuplas booleanas que representan los valores de los padres en el mismo orden que están en la lista `parents`.

@@ -10,7 +10,7 @@
       },
       "p_true": 0.28243,
       "p_false": 0.71757,
-      "time_ms": 0.3397
+      "time_ms": 0.2547
     },
     {
       "name": "Backend saturado",
@@ -22,7 +22,7 @@
       },
       "p_true": 0.580107,
       "p_false": 0.419893,
-      "time_ms": 0.3148
+      "time_ms": 0.2549
     },
     {
       "name": "Problema de autenticacion",
@@ -34,7 +34,7 @@
       },
       "p_true": 0.494505,
       "p_false": 0.505495,
-      "time_ms": 0.3353
+      "time_ms": 0.2495
     },
     {
       "name": "Problema de red o conexion",
@@ -46,7 +46,7 @@
       },
       "p_true": 0.457277,
       "p_false": 0.542723,
-      "time_ms": 0.3233
+      "time_ms": 0.2536
     },
     {
       "name": "Caida del gateway",
@@ -58,7 +58,7 @@
       },
       "p_true": 0.732007,
       "p_false": 0.267993,
-      "time_ms": 0.3082
+      "time_ms": 0.2497
     }
   ],
   "analisis_sensibilidad": [
@@ -75,14 +75,14 @@
           },
           "p_true": 0.28243,
           "p_false": 0.71757,
-          "time_ms": 0.3409
+          "time_ms": 0.217
         },
         {
           "label": "Sin evidencia (probabilidad a priori)",
           "evidence": {},
           "p_true": 0.05,
           "p_false": 0.95,
-          "time_ms": 1.5857
+          "time_ms": 1.3158
         },
         {
           "label": "Sin observar 'Error500'",
@@ -92,7 +92,7 @@
           },
           "p_true": 0.05,
           "p_false": 0.95,
-          "time_ms": 0.4877
+          "time_ms": 0.4056
         },
         {
           "label": "Sin observar 'LatenciaAlta'",
@@ -102,7 +102,7 @@
           },
           "p_true": 0.28243,
           "p_false": 0.71757,
-          "time_ms": 0.4949
+          "time_ms": 0.5774
         },
         {
           "label": "Sin observar 'LoginFallido'",
@@ -112,7 +112,7 @@
           },
           "p_true": 0.28243,
           "p_false": 0.71757,
-          "time_ms": 0.6684
+          "time_ms": 0.5033
         },
         {
           "label": "'Error500' = no (invertido)",
@@ -123,7 +123,7 @@
           },
           "p_true": 0.008257,
           "p_false": 0.991743,
-          "time_ms": 0.2743
+          "time_ms": 0.2857
         },
         {
           "label": "'LatenciaAlta' = no (invertido)",
@@ -134,7 +134,7 @@
           },
           "p_true": 0.28243,
           "p_false": 0.71757,
-          "time_ms": 0.2706
+          "time_ms": 0.2799
         },
         {
           "label": "'LoginFallido' = si (invertido)",
@@ -145,7 +145,7 @@
           },
           "p_true": 0.28243,
           "p_false": 0.71757,
-          "time_ms": 0.2713
+          "time_ms": 0.2898
         },
         {
           "label": "Todos los sintomas presentes",
@@ -162,7 +162,7 @@
           },
           "p_true": 0.070707,
           "p_false": 0.929293,
-          "time_ms": 0.0221
+          "time_ms": 0.0199
         },
         {
           "label": "Ningun sintoma presente",
@@ -179,7 +179,7 @@
           },
           "p_true": 0.002137,
           "p_false": 0.997863,
-          "time_ms": 0.0212
+          "time_ms": 0.0194
         }
       ]
     },
@@ -196,14 +196,14 @@
           },
           "p_true": 0.580107,
           "p_false": 0.419893,
-          "time_ms": 0.2873
+          "time_ms": 0.3104
         },
         {
           "label": "Sin evidencia (probabilidad a priori)",
           "evidence": {},
           "p_true": 0.1,
           "p_false": 0.9,
-          "time_ms": 1.6369
+          "time_ms": 1.6195
         },
         {
           "label": "Sin observar 'Error500'",
@@ -213,7 +213,7 @@
           },
           "p_true": 0.296406,
           "p_false": 0.703594,
-          "time_ms": 0.6385
+          "time_ms": 0.5036
         },
         {
           "label": "Sin observar 'ServicioNoDisponible'",
@@ -223,7 +223,7 @@
           },
           "p_true": 0.46798,
           "p_false": 0.53202,
-          "time_ms": 0.4807
+          "time_ms": 0.4036
         },
         {
           "label": "Sin observar 'LatenciaAlta'",
@@ -233,7 +233,7 @@
           },
           "p_true": 0.604231,
           "p_false": 0.395769,
-          "time_ms": 0.5932
+          "time_ms": 0.9287
         },
         {
           "label": "'Error500' = no (invertido)",
@@ -244,7 +244,7 @@
           },
           "p_true": 0.132671,
           "p_false": 0.867329,
-          "time_ms": 0.3202
+          "time_ms": 0.4811
         },
         {
           "label": "'ServicioNoDisponible' = no (invertido)",
@@ -255,7 +255,7 @@
           },
           "p_true": 0.31852,
           "p_false": 0.68148,
-          "time_ms": 0.4483
+          "time_ms": 0.2633
         },
         {
           "label": "'LatenciaAlta' = no (invertido)",
@@ -266,7 +266,7 @@
           },
           "p_true": 0.610534,
           "p_false": 0.389466,
-          "time_ms": 0.6535
+          "time_ms": 0.2522
         },
         {
           "label": "Todos los sintomas presentes",
@@ -283,7 +283,7 @@
           },
           "p_true": 0.113557,
           "p_false": 0.886443,
-          "time_ms": 0.0377
+          "time_ms": 0.0157
         },
         {
           "label": "Ningun sintoma presente",
@@ -300,7 +300,7 @@
           },
           "p_true": 0.012502,
           "p_false": 0.987498,
-          "time_ms": 0.0353
+          "time_ms": 0.0149
         }
       ]
     },
@@ -317,14 +317,14 @@
           },
           "p_true": 0.494505,
           "p_false": 0.505495,
-          "time_ms": 0.439
+          "time_ms": 0.247
         },
         {
           "label": "Sin evidencia (probabilidad a priori)",
           "evidence": {},
           "p_true": 0.08,
           "p_false": 0.92,
-          "time_ms": 2.264
+          "time_ms": 1.4439
         },
         {
           "label": "Sin observar 'LoginFallido'",
@@ -334,7 +334,7 @@
           },
           "p_true": 0.08,
           "p_false": 0.92,
-          "time_ms": 0.5688
+          "time_ms": 0.3932
         },
         {
           "label": "Sin observar 'Error500'",
@@ -344,7 +344,7 @@
           },
           "p_true": 0.494505,
           "p_false": 0.505495,
-          "time_ms": 1.0618
+          "time_ms": 0.4343
         },
         {
           "label": "Sin observar 'LatenciaAlta'",
@@ -354,7 +354,7 @@
           },
           "p_true": 0.494505,
           "p_false": 0.505495,
-          "time_ms": 0.5297
+          "time_ms": 0.4016
         },
         {
           "label": "'LoginFallido' = no (invertido)",
@@ -365,7 +365,7 @@
           },
           "p_true": 0.009363,
           "p_false": 0.990637,
-          "time_ms": 0.4375
+          "time_ms": 0.2285
         },
         {
           "label": "'Error500' = si (invertido)",
@@ -376,7 +376,7 @@
           },
           "p_true": 0.494505,
           "p_false": 0.505495,
-          "time_ms": 0.3127
+          "time_ms": 0.231
         },
         {
           "label": "'LatenciaAlta' = si (invertido)",
@@ -387,7 +387,7 @@
           },
           "p_true": 0.494505,
           "p_false": 0.505495,
-          "time_ms": 0.3387
+          "time_ms": 0.2353
         },
         {
           "label": "Todos los sintomas presentes",
@@ -404,7 +404,7 @@
           },
           "p_true": 0.494505,
           "p_false": 0.505495,
-          "time_ms": 0.0266
+          "time_ms": 0.0168
         },
         {
           "label": "Ningun sintoma presente",
@@ -421,7 +421,7 @@
           },
           "p_true": 0.009363,
           "p_false": 0.990637,
-          "time_ms": 0.0278
+          "time_ms": 0.0148
         }
       ]
     },
@@ -438,14 +438,14 @@
           },
           "p_true": 0.457277,
           "p_false": 0.542723,
-          "time_ms": 0.433
+          "time_ms": 0.2378
         },
         {
           "label": "Sin evidencia (probabilidad a priori)",
           "evidence": {},
           "p_true": 0.12,
           "p_false": 0.88,
-          "time_ms": 1.7782
+          "time_ms": 1.2999
         },
         {
           "label": "Sin observar 'LatenciaAlta'",
@@ -455,7 +455,7 @@
           },
           "p_true": 0.12,
           "p_false": 0.88,
-          "time_ms": 0.6418
+          "time_ms": 0.4277
         },
         {
           "label": "Sin observar 'Error500'",
@@ -465,7 +465,7 @@
           },
           "p_true": 0.457248,
           "p_false": 0.542752,
-          "time_ms": 0.5589
+          "time_ms": 0.426
         },
         {
           "label": "Sin observar 'ServicioNoDisponible'",
@@ -475,7 +475,7 @@
           },
           "p_true": 0.416667,
           "p_false": 0.583333,
-          "time_ms": 1.0976
+          "time_ms": 0.3585
         },
         {
           "label": "'LatenciaAlta' = no (invertido)",
@@ -486,7 +486,7 @@
           },
           "p_true": 0.050363,
           "p_false": 0.949637,
-          "time_ms": 0.3091
+          "time_ms": 0.2444
         },
         {
           "label": "'Error500' = si (invertido)",
@@ -497,7 +497,7 @@
           },
           "p_true": 0.456933,
           "p_false": 0.543067,
-          "time_ms": 0.3227
+          "time_ms": 0.2377
         },
         {
           "label": "'ServicioNoDisponible' = si (invertido)",
@@ -508,7 +508,7 @@
           },
           "p_true": 0.228863,
           "p_false": 0.771137,
-          "time_ms": 0.2879
+          "time_ms": 0.2407
         },
         {
           "label": "Todos los sintomas presentes",
@@ -525,7 +525,7 @@
           },
           "p_true": 0.140625,
           "p_false": 0.859375,
-          "time_ms": 0.0209
+          "time_ms": 0.0137
         },
         {
           "label": "Ningun sintoma presente",
@@ -542,7 +542,7 @@
           },
           "p_true": 0.05036,
           "p_false": 0.94964,
-          "time_ms": 0.0212
+          "time_ms": 0.0143
         }
       ]
     },
@@ -559,14 +559,14 @@
           },
           "p_true": 0.732007,
           "p_false": 0.267993,
-          "time_ms": 0.3112
+          "time_ms": 0.2615
         },
         {
           "label": "Sin evidencia (probabilidad a priori)",
           "evidence": {},
           "p_true": 0.04,
           "p_false": 0.96,
-          "time_ms": 1.5972
+          "time_ms": 1.3084
         },
         {
           "label": "Sin observar 'ServicioNoDisponible'",
@@ -576,7 +576,7 @@
           },
           "p_true": 0.161616,
           "p_false": 0.838384,
-          "time_ms": 0.8019
+          "time_ms": 0.4369
         },
         {
           "label": "Sin observar 'LatenciaAlta'",
@@ -586,7 +586,7 @@
           },
           "p_true": 0.371223,
           "p_false": 0.628777,
-          "time_ms": 0.5693
+          "time_ms": 0.4185
         },
         {
           "label": "Sin observar 'Error500'",
@@ -596,7 +596,7 @@
           },
           "p_true": 0.556851,
           "p_false": 0.443149,
-          "time_ms": 0.6006
+          "time_ms": 0.4286
         },
         {
           "label": "'ServicioNoDisponible' = no (invertido)",
@@ -607,7 +607,7 @@
           },
           "p_true": 0.038275,
           "p_false": 0.961725,
-          "time_ms": 0.3505
+          "time_ms": 0.2431
         },
         {
           "label": "'LatenciaAlta' = no (invertido)",
@@ -618,7 +618,7 @@
           },
           "p_true": 0.141065,
           "p_false": 0.858935,
-          "time_ms": 0.3897
+          "time_ms": 0.2431
         },
         {
           "label": "'Error500' = si (invertido)",
@@ -629,7 +629,7 @@
           },
           "p_true": 0.253364,
           "p_false": 0.746636,
-          "time_ms": 0.3641
+          "time_ms": 0.2446
         },
         {
           "label": "Todos los sintomas presentes",
@@ -646,7 +646,7 @@
           },
           "p_true": 0.059107,
           "p_false": 0.940893,
-          "time_ms": 0.0225
+          "time_ms": 0.0148
         },
         {
           "label": "Ningun sintoma presente",
@@ -663,7 +663,7 @@
           },
           "p_true": 0.002381,
           "p_false": 0.997619,
-          "time_ms": 0.0211
+          "time_ms": 0.0139
         }
       ]
     }

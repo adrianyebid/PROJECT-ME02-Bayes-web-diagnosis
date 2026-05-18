@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Recurse -Force)",
+      "Bash(Select-Object FullName)",
+      "Bash(Sort-Object FullName)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\ASUS\\\\Desktop\\\\PythonProject\\\\PROJECT-ME02-Bayes-web-diagnosis\" -Recurse -Force)",
+      "Bash(python -c ' *)",
+      "PowerShell(cd \"c:\\\\Users\\\\ASUS\\\\Desktop\\\\PythonProject\\\\PROJECT-ME02-Bayes-web-diagnosis\"; $output = py run_analysis.py 2>&1; Write-Host \"EXIT CODE:\"; $LASTEXITCODE; Write-Host \"LINES WITH guardado:\"; $output | Where-Object { $_ -match \"guardado|exportado|Grafico\" })"
+    ]
+  }
+}

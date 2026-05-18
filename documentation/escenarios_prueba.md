@@ -36,6 +36,8 @@ P(BaseDatosCaida=no | evidencia) = 0.7176 (71.76%)
 | 9 | Todos los sintomas presentes (9 variables = si) | 0.0707 |
 | 10 | Ningun sintoma presente (9 variables = no) | 0.0021 |
 
+![Analisis de sensibilidad - Posible caida de base de datos](../graphs/sensibilidad_posible_caida_de_base_de_datos.png)
+
 **Interpretacion:**
 
 La probabilidad a priori de `BaseDatosCaida` es 0.05. Al observar los tres sintomas, sube a 0.2824 (+0.2324): mas de 5 veces mas probable.
@@ -80,6 +82,8 @@ P(BackendSaturado=no | evidencia) = 0.4199 (41.99%)
 | 8 | LatenciaAlta=no (invertido): Error500=si, ServicioNoDisponible=si, LatenciaAlta=no | 0.6105 |
 | 9 | Todos los sintomas presentes (9 variables = si) | 0.1136 |
 | 10 | Ningun sintoma presente (9 variables = no) | 0.0125 |
+
+![Analisis de sensibilidad - Backend saturado](../graphs/sensibilidad_backend_saturado.png)
 
 **Interpretacion:**
 
@@ -126,6 +130,8 @@ P(ErrorAutenticacion=no | evidencia) = 0.5055 (50.55%)
 | 8 | LatenciaAlta=si (invertido): LoginFallido=si, Error500=no, LatenciaAlta=si | 0.4945 |
 | 9 | Todos los sintomas presentes (9 variables = si) | 0.4945 |
 | 10 | Ningun sintoma presente (9 variables = no) | 0.0094 |
+
+![Analisis de sensibilidad - Problema de autenticacion](../graphs/sensibilidad_problema_de_autenticacion.png)
 
 **Interpretacion:**
 
@@ -174,6 +180,8 @@ P(ConexionInestable=no | evidencia) = 0.5427 (54.27%)
 | 8 | ServicioNoDisponible=si (invertido): LatenciaAlta=si, Error500=no, ServicioNoDisponible=si | 0.2289 |
 | 9 | Todos los sintomas presentes (9 variables = si) | 0.1406 |
 | 10 | Ningun sintoma presente (9 variables = no) | 0.0504 |
+
+![Analisis de sensibilidad - Problema de red o conexion](../graphs/sensibilidad_problema_de_red_o_conexion.png)
 
 **Interpretacion:**
 
@@ -225,6 +233,8 @@ P(GatewayCaido=no | evidencia) = 0.2680 (26.80%)
 | 9 | Todos los sintomas presentes (9 variables = si) | 0.0591 |
 | 10 | Ningun sintoma presente (9 variables = no) | 0.0024 |
 
+![Analisis de sensibilidad - Caida del gateway](../graphs/sensibilidad_caida_del_gateway.png)
+
 **Interpretacion:**
 
 Este es el escenario con MAYOR certeza: `GatewayCaido` pasa de P=0.04 (a priori) a P=0.7320, un aumento masivo de +0.6920. La hipotesis es 18 veces mas probable que sin evidencia.
@@ -257,6 +267,10 @@ Con todos los sintomas (variacion 9), P=0.0591: muchas causas compiten. Con ning
 | E4 | ConexionInestable | 0.1200 | 0.4573 | +0.3373 | Plausible, no dominante |
 | E5 | GatewayCaido | 0.0400 | 0.7320 | +0.6920 | **Muy probable (73%)** |
 
+![Comparacion de escenarios - P(si) a posteriori](../graphs/comparacion_escenarios.png)
+
+![Probabilidad a priori vs a posteriori por escenario](../graphs/priori_vs_posteriori.png)
+
 ---
 
 ## 3. Medicion de tiempos de ejecucion
@@ -270,6 +284,8 @@ Los tiempos de ejecucion varian segun la cantidad de variables ocultas en cada c
 | E3: ErrorAutenticacion | 6 | ~4-8 ms |
 | E4: ConexionInestable | 6 | ~4-8 ms |
 | E5: GatewayCaido | 6 | ~4-8 ms |
+
+![Tiempos de ejecucion por escenario](../graphs/tiempos_ejecucion.png)
 
 *Nota: Los tiempos exactos dependen del hardware. Con 10 variables y 3-4 observadas (6-7 ocultas), el algoritmo de enumeracion realiza aproximadamente 2^6 = 64 a 2^7 = 128 evaluaciones de la red.*
 
@@ -302,6 +318,8 @@ Los siguientes graficos se generan automaticamente al ejecutar la opcion "Analis
 | `graphs/sensibilidad_problema_de_autenticacion.png` | Barras de sensibilidad para escenario 3 |
 | `graphs/sensibilidad_problema_de_red_o_conexion.png` | Barras de sensibilidad para escenario 4 |
 | `graphs/sensibilidad_caida_del_gateway.png` | Barras de sensibilidad para escenario 5 |
+
+![Heatmap de sensibilidad completa - todos los escenarios](../graphs/sensibilidad_completa.png)
 
 ---
 
