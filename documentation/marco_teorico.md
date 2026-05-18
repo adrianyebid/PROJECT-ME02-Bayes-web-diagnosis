@@ -1,4 +1,4 @@
-# Marco Teórico — Integrante 2
+# Marco Teórico
 ## Bayes Web Diagnosis: Razonamiento Probabilístico y Redes Bayesianas
 
 > Basado en el Capítulo 13: *Probabilistic Reasoning* de **Artificial Intelligence: A Modern Approach** (Russell & Norvig).
