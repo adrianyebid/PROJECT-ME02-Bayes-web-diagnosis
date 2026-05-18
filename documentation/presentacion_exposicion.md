@@ -1,107 +1,140 @@
-# Presentacion - Integrante 7
+# Presentacion general del proyecto
 
-## 1. Que voy a presentar
+## 1. Enfoque de la presentacion
 
-En mi parte voy a explicar tres cosas:
+La exposicion debe presentar el proyecto como un trabajo integral del equipo, con lenguaje academico y tono estudiantil formal.
 
-- Como se usa el sistema desde consola.
-- Que validaciones agregamos para evitar errores de entrada.
-- Que documentacion deje lista para que cualquier companero pueda ejecutarlo.
+Puntos de enfoque:
 
-Tiempo recomendado: 5 a 7 minutos.
+- problema de diagnostico probabilistico en aplicaciones web distribuidas
+- aplicacion de redes bayesianas del Capitulo 13
+- implementacion por modulos en Python
+- validacion mediante escenarios y analisis de resultados
 
----
-
-## 2. Estructura de diapositivas (simple y clara)
-
-### Diapositiva 1 - Mi rol en el proyecto
-
-Texto sugerido:
-
-"Yo fui el Integrante 7. Me encargue del menu de consola, manuales, validacion final y apoyo a la presentacion."
-
-### Diapositiva 2 - Flujo de uso del programa
-
-Texto sugerido:
-
-"El flujo es directo: usuario -> menu -> evidencia -> inferencia -> resultado."
-
-"La idea fue que cualquier persona pudiera usarlo sin saber detalles tecnicos del algoritmo."
-
-### Diapositiva 3 - Mejoras que hice en el menu
-
-Texto sugerido:
-
-"Me enfoque en que el sistema no se rompiera por entradas incorrectas."
-
-- Reintento si se elige una opcion invalida.
-- Reintento si se escribe mal la evidencia.
-- Opcion `0` para volver sin ejecutar la consulta.
-- Mensajes claros para guiar al usuario.
-
-### Diapositiva 4 - Demo corta
-
-Mostrar rapido:
-
-1. Opcion `3` (estructura de red).
-2. Opcion `2` (escenarios).
-3. Opcion `1` (consulta manual).
-4. Ingresar un dato invalido para mostrar validacion.
-
-### Diapositiva 5 - Manual de usuario
-
-Ruta: `documentation/manual_usuario.md`
-
-Texto sugerido:
-
-"Aqui deje como ejecutar el proyecto, como usar el menu y como interpretar resultados."
-
-### Diapositiva 6 - Manual tecnico
-
-Ruta: `documentation/manual_tecnico.md`
-
-Texto sugerido:
-
-"Aqui explique la arquitectura por modulos y como extender nodos o escenarios."
-
-### Diapositiva 7 - Validacion final
-
-Ruta: `documentation/validacion_final.md`
-
-Texto sugerido:
-
-"Hice una validacion final para comprobar compilacion, ejecucion de escenarios y manejo de errores de entrada."
-
-### Diapositiva 8 - Cierre
-
-Texto sugerido:
-
-"No solo buscamos que calcule probabilidades, tambien que sea facil de ejecutar, entender y mantener por el equipo."
+Duracion sugerida: 8 a 10 minutos.
 
 ---
 
-## 3. Guion hablado (tono estudiante)
+## 2. Estructura sugerida de diapositivas
 
-"En mi parte me enfoque en dejar el proyecto util de verdad para quien lo vaya a ejecutar. Mejore el menu para que valide entradas y no falle si el usuario se equivoca al escribir. Tambien deje listos el manual de usuario y el manual tecnico para que el equipo tenga una guia clara tanto de uso como de estructura interna. Finalmente hice una validacion final corriendo el proyecto desde cero para asegurar que todo funciona bien antes de la entrega."
+### Diapositiva 1 - Titulo y contexto
+
+Contenido:
+
+- titulo del proyecto
+- curso y capitulo base (Capitulo 13)
+- integrantes del equipo
+- objetivo general
+
+### Diapositiva 2 - Planteamiento del problema
+
+Contenido:
+
+- dificultad de diagnosticar fallas por sintomas ambiguos
+- ejemplos de sintomas compartidos (Error500, LatenciaAlta, ServicioNoDisponible)
+- necesidad de inferencia probabilistica
+
+### Diapositiva 3 - Fundamento teorico
+
+Contenido:
+
+- red bayesiana como DAG
+- variables aleatorias y dependencia condicional
+- tablas CPT
+- consulta posterior `P(X | evidencia)`
+
+### Diapositiva 4 - Modelo propuesto
+
+Contenido:
+
+- variables causa y variables sintoma
+- relacion causal principal entre nodos
+- criterio de modelado: causas -> efectos
+
+### Diapositiva 5 - Arquitectura del sistema
+
+Contenido:
+
+- entrada de evidencia por consola
+- motor de inferencia (`enumeration_ask`, `enumerate_all`)
+- red bayesiana y CPT
+- salida probabilistica e interpretacion
+
+### Diapositiva 6 - Implementacion y menu
+
+Contenido:
+
+- funciones principales del menu
+- validacion de entradas (`s`, `n`, `d`)
+- control de errores para experiencia de uso robusta
+
+### Diapositiva 7 - Escenarios y resultados
+
+Contenido:
+
+- resumen de los 5 escenarios de prueba
+- ejemplo de probabilidad posterior por escenario
+- comparacion entre evidencias y cambios de probabilidad
+
+### Diapositiva 8 - Validacion final
+
+Contenido:
+
+- ejecucion desde cero del proyecto
+- compilacion correcta de modulos
+- estabilidad del sistema ante entradas invalidas
+- verificacion de consistencia probabilistica (normalizacion)
+
+### Diapositiva 9 - Rol del Integrante 7
+
+Contenido:
+
+- elaboracion de manual de usuario
+- elaboracion de manual tecnico
+- preparacion del apoyo de presentacion
+- validacion final de operacion y formato
+
+Texto sugerido:
+
+"El rol del Integrante 7 se centró en consolidar la experiencia de uso, la documentacion operativa y la verificacion final de ejecucion del sistema."
+
+### Diapositiva 10 - Conclusiones
+
+Contenido:
+
+- cumplimiento de requisitos del proyecto
+- alineacion con el capitulo asignado
+- utilidad del modelo para razonamiento bajo incertidumbre
+- lineas de mejora futura
 
 ---
 
-## 4. Preguntas que nos pueden hacer
+## 3. Guion academico breve (sin primera persona)
 
-Pregunta: "Por que consola y no una web?"
-
-Respuesta corta: "Porque el objetivo principal era demostrar inferencia bayesiana. La consola nos permitio enfocarnos en la logica del capitulo y no en frontend."
-
-Pregunta: "Que pasa si el usuario no conoce un sintoma?"
-
-Respuesta corta: "Puede poner `d` de desconocido y ese dato no se fuerza como evidencia."
-
-Pregunta: "Como comprobaron que funciona?"
-
-Respuesta corta: "Compilamos, ejecutamos escenarios y probamos errores de entrada para validar robustez."
+"El proyecto desarrolla un sistema de diagnostico probabilistico de fallas en una aplicacion web distribuida mediante redes bayesianas. El modelo representa causas y sintomas con variables booleanas, y aplica inferencia exacta por enumeracion para calcular probabilidades posteriores. La implementacion se realiza en Python, con estructura modular y validaciones de entrada en consola. La evaluacion se apoya en escenarios representativos, analisis de sensibilidad y comparaciones entre probabilidad a priori y a posteriori. En conjunto, la solucion evidencia la aplicacion directa de los conceptos del Capitulo 13 para resolver un problema real de computacion bajo incertidumbre."
 
 ---
 
-## 5. Mensaje final para decir en clase
+## 4. Preguntas probables y respuestas de soporte
 
-"Mi aporte fue cerrar la parte operativa del proyecto: uso real por consola, documentacion clara y validacion final. Asi el trabajo no solo queda correcto en teoria, sino tambien presentable y reproducible."
+Pregunta: "Por que se eligio una interfaz de consola?"
+
+Respuesta: "Porque el foco del proyecto es el motor probabilistico y su explicabilidad; la consola reduce complejidad adicional de interfaz."
+
+Pregunta: "Como se valida que el algoritmo funciona?"
+
+Respuesta: "Mediante ejecucion de escenarios, verificacion de normalizacion, pruebas de entradas invalidas y consistencia de resultados."
+
+Pregunta: "Que aporta la red bayesiana frente a reglas fijas?"
+
+Respuesta: "Permite razonar con incertidumbre y combinar evidencia parcial sin requerir reglas deterministas rigidas."
+
+Pregunta: "Cual fue la contribucion del Integrante 7?"
+
+Respuesta: "Manuales, apoyo de presentacion, robustez del menu de uso y validacion final del funcionamiento integral."
+
+---
+
+## 5. Cierre sugerido
+
+"El proyecto demuestra que el razonamiento probabilistico es una herramienta efectiva para diagnosticar fallas con evidencia incompleta. La integracion de modelo, inferencia y validacion permite una entrega tecnica coherente, reproducible y alineada con el marco teorico del curso."

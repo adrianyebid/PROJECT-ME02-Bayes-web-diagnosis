@@ -19,7 +19,7 @@ El sistema esta organizado en modulos desacoplados:
 - `main.py`: interfaz de consola y orquestacion del flujo de uso.
 
 Idea general:
-Separamos logica probabilistica, modelo y consola para que cada parte del grupo pudiera trabajar sin bloquear a los demas.
+Se separa la logica probabilistica, el modelo y la consola para facilitar trabajo paralelo sin bloquear la integracion del equipo.
 
 ---
 
@@ -54,7 +54,7 @@ Este método consulta la CPT local. Filtra de la evidencia global únicamente lo
 - `order (List[str])`: Lista que documenta el orden exacto de inserción de los nodos.
 
 **Mantenimiento del Orden Topológico:**
-Internamente la lógica de nuestra red bayesiana no realiza un "ordenamiento topológico dinámico". En su lugar, el diseño **obliga a que el registro** de los nodos a través del método `add_node(self, node)` se haga desde las "Raíces hasta las Hojas" (causas puras primero, síntomas después). Al añadir el nombre del nodo a `self.order` al momento del registro, el arreglo `order` preserva de manera pasiva el orden topológico. Este concepto es vital porque el algoritmo de inferencia por enumeración requiere que cuando analice un nodo hijo, sus variables condicionantes (padres) ya hayan sido trazadas.
+Internamente la lógica de la red bayesiana no realiza un "ordenamiento topológico dinámico". En su lugar, el diseño **obliga a que el registro** de los nodos a través del método `add_node(self, node)` se haga desde las "Raíces hasta las Hojas" (causas puras primero, síntomas después). Al añadir el nombre del nodo a `self.order` al momento del registro, el arreglo `order` preserva de manera pasiva el orden topológico. Este concepto es vital porque el algoritmo de inferencia por enumeración requiere que cuando analice un nodo hijo, sus variables condicionantes (padres) ya hayan sido trazadas.
 
 **Validación Estructural (`validate_network`):**
 La clase network también asume el rol de integridad del DAG comprobando que cada padre de cada nodo declarado dentro del ecosistema exista formalmente en el diccionario `nodes`. Sin esta revisión preventiva, podrían ocurrir quiebres lógicos de llave faltante en tiempo de inferencia probabilística.
@@ -242,6 +242,6 @@ Con estas pruebas, el motor de inferencia por enumeracion queda estable y listo 
 - No hay aprendizaje automatico de CPT desde datos reales.
 - No existe interfaz grafica (solo consola).
 - No hay persistencia de consultas/evidencias en archivo.
-- No hay medicion automatica de tiempos por escenario.
+- Los graficos dependen de `matplotlib`; si no esta instalado, las opciones de analisis visual no funcionan.
 
 Estas limitaciones son aceptables para el alcance academico del proyecto.

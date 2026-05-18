@@ -1,6 +1,6 @@
 # Validacion final de ejecucion
 
-Fecha de validacion: 2026-05-15
+Fecha de validacion: 2026-05-17
 Responsable: Integrante 7
 
 ## 1. Objetivo
@@ -22,7 +22,7 @@ Comprobar que el proyecto:
 Comando:
 
 ```bash
-python3 -m py_compile main.py node.py bayesian_network.py inference.py model.py scenarios.py utils.py
+python3 -m py_compile main.py node.py bayesian_network.py inference.py model.py scenarios.py utils.py visualization.py
 ```
 
 Resultado:
@@ -70,7 +70,7 @@ Resultado:
 
 Caso probado:
 
-- Salida por opcion `4` desde menu principal.
+- Salida por opcion `7` desde menu principal.
 
 Resultado:
 
@@ -94,4 +94,5 @@ Antes de presentar:
 1. Ejecutar `python3 main.py` en el equipo de exposicion.
 2. Hacer una corrida rapida de opcion `2` (escenarios).
 3. Mostrar una consulta manual breve en opcion `1`.
-4. Tener abiertos `manual_usuario.md` y `manual_tecnico.md` para responder preguntas.
+4. Si hay tiempo, ejecutar opcion `4` para mostrar medicion de tiempos.
+5. Tener abiertos `manual_usuario.md` y `manual_tecnico.md` para responder preguntas.

@@ -2,7 +2,7 @@
 
 ## 1. Objetivo
 
-Este manual lo hicimos para que cualquier integrante del grupo pueda ejecutar **Bayes Web Diagnosis** sin enredarse.
+En este manual se presenta el procedimiento para ejecutar **Bayes Web Diagnosis** de forma clara y ordenada.
 
 El sistema recibe sintomas observados (evidencia) y calcula probabilidades posteriores de una causa, por ejemplo:
 
@@ -15,8 +15,13 @@ El sistema recibe sintomas observados (evidencia) y calcula probabilidades poste
 - Python 3.8 o superior (recomendado 3.10+)
 - Terminal (macOS, Linux o Windows)
 - Archivos del proyecto descargados
+- `matplotlib` instalado (para opciones de graficos del menu)
 
-No se requieren librerias externas.
+Instalacion recomendada:
+
+```bash
+python3 -m pip install matplotlib
+```
 
 ---
 
@@ -31,6 +36,7 @@ Asegura que existan estos archivos en la raiz del proyecto:
 - `node.py`
 - `scenarios.py`
 - `utils.py`
+- `visualization.py`
 
 ---
 
@@ -57,7 +63,10 @@ Al iniciar, se muestra este menu:
 1. Ejecutar consulta manual
 2. Ejecutar escenarios de prueba
 3. Mostrar estructura de la red
-4. Salir
+4. Ejecutar escenarios con medicion de tiempo
+5. Analisis completo (sensibilidad + graficos)
+6. Mostrar diagramas de flujo (ASCII)
+7. Salir
 
 ### Opcion 1: Ejecutar consulta manual
 
@@ -79,7 +88,25 @@ Ejecuta automaticamente los escenarios definidos en `scenarios.py`.
 
 Muestra cada nodo y sus padres para validar dependencias causales.
 
-### Opcion 4: Salir
+### Opcion 4: Ejecutar escenarios con medicion de tiempo
+
+Ejecuta los escenarios y reporta tiempo por caso.
+
+### Opcion 5: Analisis completo
+
+Lanza el flujo extendido del proyecto:
+
+- escenarios base
+- comparacion a priori vs a posteriori
+- sensibilidad de evidencia
+- exportacion JSON
+- generacion de graficos en carpeta `graphs/`
+
+### Opcion 6: Diagramas de flujo (ASCII)
+
+Muestra en consola diagramas del sistema, red y flujo de inferencia.
+
+### Opcion 7: Salir
 
 Cierra la aplicacion.
 
@@ -97,7 +124,7 @@ Cierra la aplicacion.
 8. Repetir con nuevas evidencias para comparar comportamiento.
 
 Nota rapida:
-Si estas probando para exponer, primero corre escenarios y luego haz una consulta manual corta.
+Para pruebas de exposicion, primero se ejecutan los escenarios y luego una consulta manual corta.
 
 ---
 
@@ -181,6 +208,7 @@ Antes de exponer:
 2. Mostrar opcion `3` (estructura de la red).
 3. Ejecutar opcion `2` (escenarios).
 4. Ejecutar al menos una consulta manual (opcion `1`).
-5. Explicar brevemente por que la probabilidad sube o baja segun evidencia.
+5. Si hay tiempo, mostrar opcion `4` para evidenciar medicion de rendimiento.
+6. Explicar brevemente por que la probabilidad sube o baja segun evidencia.
 
 Con este flujo, la demostracion queda clara y ordenada para profesor y companeros.
